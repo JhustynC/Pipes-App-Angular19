@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: all;
+  base: true;
+  components: true;
+  utilities: true;
+  logs: true;
+  rtl: false;
+  darkTheme: "dark";
+}
