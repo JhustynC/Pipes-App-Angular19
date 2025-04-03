@@ -53,8 +53,20 @@
                 [class.text-error]="!hero.canFly">{{hero.canFly | canfly}}
           </span>
         </td>
-        <td>{{hero.color}}</td>
-        <td>{{hero.creator}}</td>
+        <td>
+          <span class="text-xs w-44"
+                [ngStyle]="{'color': getColorClass(hero.color)}"
+                [style.color]="hero.color | heroTextColor">
+            {{hero.color | color | titlecase}}
+          </span>
+        </td>
+        <td>
+          <span class="text-xs w-44"
+                [class.text-error]="hero.creator === 1"
+                [class.text-info]="hero.creator !== 1">
+            {{hero.creator | heroCreator | uppercase}}
+          </span>
+        </td>
       </tr>
       }
     </tbody>
