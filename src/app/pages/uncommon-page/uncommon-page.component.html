@@ -1,1 +1,87 @@
-<p>uncommon-page works!</p>,
+<section class="mt-5 mb-5">
+  <h1 class="text-3xl font-bold text-start mb-1">Uncommon Pipes</h1>
+  <h2 class="text-1xl text-start">Pipes included in Angular</h2>
+</section>
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+  <card-component title="I18N Select Pipe">
+    <p>Greetings {{ client().gander | i18nSelect:invatationMap }}{{client().name}}, it's a pleasure to invite you to our conference</p>
+    <button (click)="changeClient()"
+            class="btn btn-primary">Change Customer</button>
+  </card-component>
+
+  <card-component title="I18N Plural Pipe">
+    <p>{{clients().length | i18nPlural:clientsMap()}}</p>
+
+    <button [disabled]="clients().length === 0"
+            (click)="deleteClient()"
+            class="btn btn-primary">Delete client</button>
+  </card-component>
+
+  <card-component title="Slice Pipe">
+    <b>Original</b>
+    <p class="text-primary">
+      {{clients().join(',')}}
+    </p>
+
+    <b>Slice:0:2</b>
+    <p class="text-primary">
+      {{clients() | slice:0:2}}
+    </p>
+
+    <b>Slice:0:1</b>
+    <p class="text-primary">
+      {{clients() | slice:0:1}}
+    </p>
+
+    <b>Slice:0:-3</b>
+    <p class="text-primary">
+      {{clients()| slice:0:-3}}
+    </p>
+  </card-component>
+
+
+  <card-component title="JSON Pipe">
+    <pre class="text-primary">{{clients() | json}}</pre>
+    <pre class="text-primary">{{client() | json}}</pre>
+    <pre class="text-primary">{{clients().join(",") | uppercase}}</pre>
+  </card-component>
+
+
+  <card-component title="KeyValuePipe">
+    <!-- <pre class="text-primary">{{profile | keyvalue | json}}</pre> -->
+    @for(item of profile | keyvalue; track item.key){
+    <ul>
+      <li>
+        <span class="text-primary">
+          {{item.key | uppercase}}:
+        </span>
+        <strong>
+          {{item.value}}
+        </strong>
+      </li>
+    </ul>
+    }
+  </card-component>
+
+  <card-component title="Async Pipe">
+    <p>{{promiseValue | async}}</p>
+
+    @if(promiseValue | async; as value){
+    <p class="text-primary">{{value}}</p>
+    }@else {
+    <p class="text-secondary">Espere...</p>
+    }
+  </card-component>
+
+
+  <card-component title="Async Pipe with Observable">
+    <!-- <p>{{myObsevableTimer | async}}</p> -->
+    @if(myObsevableTimer | async; as value){
+    <p class="text-primary">{{value}}</p>
+    }@else {
+    <p class="text-secondary">Espernado primer valor...</p>
+    }
+  </card-component>
+</div>

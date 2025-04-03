@@ -10,6 +10,11 @@ export const routes: Routes = [
     path: 'numbers',
     title: 'Numbers Pipes',
     loadComponent: () => import('./pages/numbers-page/numbers-page.component'),
+    // new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(import('./pages/numbers-page/numbers-page.component'));
+    //   }, 5000);
+    // }),
   },
   {
     path: 'uncommon',
