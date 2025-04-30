@@ -20,11 +20,25 @@
 <section>
   <div class="flex justify-between w-full items-center flex-wrap">
     <h1 class="text-2xl text-secondary font-bold">Custom pipes in action</h1>
+    <input type="text"
+           placeholder="Search"
+           class="input input-bordered w-24 md:w-auto"
+           (input)="searchBy.set(search.value)"
+           #search />
+    @if(sortBy() !== null){
+    <div class="badge badge-secondary badge-outline">
+      Sort by: {{sortBy() | titlecase}}
+    </div>
+    }
     <div class="flex gap-2">
-      <button class="btn btn-primary">By name</button>
-      <button class="btn btn-secondary">By flyer</button>
-      <button class="btn btn-accent">By color</button>
-      <button class="btn btn-info">By creator</button>
+      <button class="btn btn-primary"
+              (click)="sortBy.set('name')">By name</button>
+      <button class="btn btn-secondary"
+              (click)="sortBy.set('canFly')">By flyer</button>
+      <button class="btn btn-accent"
+              (click)="sortBy.set('color')">By color</button>
+      <button class="btn btn-info"
+              (click)="sortBy.set('creator')">By creator</button>
     </div>
   </div>
 </section>
@@ -43,7 +57,7 @@
       </tr>
     </thead>
     <tbody>
-      @for(hero of heroes(); track hero.id){
+      @for(hero of heroes() | searchHero:searchBy() | heroSortBy:sortBy() ; track hero.id){
       <tr>
         <td>{{hero.id}}</td>
         <td>{{hero.name}}</td>
